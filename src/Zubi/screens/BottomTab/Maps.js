@@ -1,40 +1,38 @@
-import React,{useState,useRef,useEffect} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,Dimensions,SafeAreaView ,FlatList, ScrollView,ActivityIndicator} from 'react-native';
-import colors from '../../assets/colors';
-import Font_style from '../../assets/Font_style';
 
-
-
-var windowWidth = Dimensions.get('window').width
-var windowHeight=Dimensions.get('window').height
-
-export default function Maps({
-    style,
-    text,
-    bold
-}) {
-
-    const [manual_time, set_manual_time] = useState('');
-
-    useEffect(()=>{
-        // alert(upper_margin)
-    },[])
-
-
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import MapView from "react-native-maps";
+export default function App() {
   return (
-    <View >
-        <Text style={[styles.text,style]}>maps</Text>
+    <View style={styles.container}>
+    {/*Render our MapView*/}
+      <MapView
+        style={styles.map}
+        //specify our coordinates.
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
+      <View style={{height:100,width:300,backgroundColor:'white'}}>
+        <Text>bakshjcb</Text>
+      </View>
     </View>
-    );
+  );
 }
+//create our styling code:
 const styles = StyleSheet.create({
-
-
-  text:{
-    fontSize:24,
-    fontFamily:Font_style.Poppins_Bold,
-    color:colors.black,
-    textAlign:'center'
-  }
-
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1, //the container will fill the whole screen.
+    // justifyContent: "flex-end",
+    // alignItems: "center",
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    // alignItems:'center',
+    // justifyContent:'center'
+  },
 });
