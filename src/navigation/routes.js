@@ -17,6 +17,13 @@ import Inreview_document from '../Zubi/screens/Authentication/Inreview_document'
 import Help from '../Zubi/screens/Authentication/Help';
 import Dashboard from '../Zubi/screens/BottomTab/Dashboard';
 
+//Asim Screens
+import Review from '../Zubi/screens/BottomTab/RatingReview';
+import Support from '../Zubi/screens/BottomTab/SupportNoti';
+import Chat from '../Zubi/screens/BottomTab/Messages';
+import Setting from '../Zubi/screens/BottomTab/Settings';
+import DateDistances from '../Zubi/screens/BottomTab/DateDistances';
+
 
 
 //zubi end
@@ -29,8 +36,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Required_steps"
+        initialRouteName="Review"
         screenOptions={{headerShown: false}}>
+          {/* asim code */}
+        <Stack.Screen name="Review" component={Review} />
+        <Stack.Screen name="Support" component={Support} />
+        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="DateDistances" component={DateDistances} />
           {/* zubi start */}
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Onboarding1" component={Onboarding1} />
@@ -46,8 +59,6 @@ export default function App() {
         <Stack.Screen name="Inreview_document" component={Inreview_document} />
         <Stack.Screen name="Help" component={Help} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );
