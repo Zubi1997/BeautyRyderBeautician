@@ -11,16 +11,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import Text_sub_heading from "../../Components/Text_components/Text_sub_heading";
 import Font_style from "../../assets/Font_style";
 import ImagePicker from 'react-native-image-crop-picker';
-import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var windowWidth = Dimensions.get('window').width
 var windowHeight=Dimensions.get('window').height
-export default function CNIC_front({ navigation }) {
+export default function Inreview_document({ navigation }) {
 
-    const [modalVisible_camera, set_modalVisible_camera] = useState(false);
-    const [photo_detail_modal, set_photo_detail_modal] = useState(false);
 
     const [image, setImage] = useState(null);
 
@@ -31,27 +29,19 @@ export default function CNIC_front({ navigation }) {
       constructor();
     }, [])
 
-    const openCamera = () => {
-      ImagePicker.openCamera({
-        width: 300,
-        height: 400,
-        cropping: true,
-      })
-        .then(image => {
-          // onClose()
-          console.log(image.path);
-          set_modalVisible_camera(false)
-          setImage(image.path);
-        })
-        .catch(err => {
-          alert(err.toString())
-          console.log('openCamera catch' + err.toString());
-        });
-    };
+   
 
   return (
     <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollview}>
+            <View style={styles.header1}>
+                <AntDesign name='exclamationcircleo' size={25} color={colors.primary} />
+                <View style={styles.cat_txt_view}>
+                    <Text style={styles.cat_txt1} >CNIC Back Side</Text>
+                </View>
+            </View>
+            <Divider height={2} width={windowWidth}  />
+
             <View style={styles.header}>
                 <View style={styles.heading}>
                     <Text_heading text="We're reviewng your document"/>
@@ -61,8 +51,7 @@ export default function CNIC_front({ navigation }) {
                 </View>
             </View>
          
-
-            <GradientButton end={true} onpress={()=>set_modalVisible_camera(true)} Title1='Next'/>
+            <GradientButton end={true} onpress={()=>navigation.navigate('Help')} Title1='Next'/>
 
            
         </ScrollView>
@@ -75,17 +64,17 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:colors.background,
-    padding:20
+    // padding:20
   },
   scrollview:{
     flexGrow:1,
     marginBottom:20
   },
   header:{
-    alignItems:'center'
+    alignItems:'center',
   },
   heading:{
-    marginTop:40
+    marginTop:30
   },
 
   picker_view:{
@@ -112,13 +101,15 @@ const styles = StyleSheet.create({
     marginTop:50
   },
   cat_txt_view:{
-    flex:1,
+    // flex:1,
     marginLeft:10,
-    justifyContent:'center'
+    // justifyContent:'center',
+    // backgroundColor:'red'
   },
   cat_txt1:{
     fontSize:18,
-    color:colors.black
+    color:colors.black,
+    fontFamily:Font_style.Poppins_SemiBold
   },
 cat_txt2:{
     fontSize:16,
@@ -169,6 +160,14 @@ cross_view:{
   justifyContent:'center',
   position:'relative'
 
+},
+header1:{
+  backgroundColor:colors.white,
+  flexDirection:'row',
+  padding:20,
+  marginTop:50,
+  paddingLeft:windowWidth/10,
+  alignItems:'center'
 }
 
 });

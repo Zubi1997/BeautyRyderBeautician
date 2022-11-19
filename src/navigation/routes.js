@@ -14,6 +14,9 @@ import Required_steps from '../Zubi/screens/Authentication/Required_steps';
 import CNIC_front from '../Zubi/screens/Authentication/CNIC_front';
 import CNIC_detailed_image from '../Zubi/screens/Authentication/CNIC_detailed_image';
 import Inreview_document from '../Zubi/screens/Authentication/Inreview_document';
+import Help from '../Zubi/screens/Authentication/Help';
+import Dashboard from '../Zubi/screens/BottomTab/Dashboard';
+
 
 
 //zubi end
@@ -41,6 +44,9 @@ export default function App() {
         <Stack.Screen name="CNIC_front" component={CNIC_front} />
         <Stack.Screen name="CNIC_detailed_image" component={CNIC_detailed_image} />
         <Stack.Screen name="Inreview_document" component={Inreview_document} />
+        <Stack.Screen name="Help" component={Help} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+
 
 
       </Stack.Navigator>
