@@ -42,7 +42,6 @@ export default function App() {
         <Stack.Screen name="CNIC_detailed_image" component={CNIC_detailed_image} />
         <Stack.Screen name="Inreview_document" component={Inreview_document} />
 
-
       </Stack.Navigator>
     </NavigationContainer>
   );

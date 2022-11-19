@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+// import 'react-native-gesture-handler';
 import {Dimensions} from 'react-native';
 import AppRoutes from './src/navigation/routes';
 // import SplashScreen from 'react-native-splash-screen';
