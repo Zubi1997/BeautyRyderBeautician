@@ -34,7 +34,7 @@ export default function Onboarding1({ navigation }) {
                 <GradientButton end={false} onpress={()=>navigation.navigate('Onboarding2')} Title1='CONTINUE'/>
                 <View style={{flex:1,justifyContent:'flex-end',}}>
                     <View>
-                        <Divider height={2} width={windowWidth} m />
+                        <Divider height={2} width={windowWidth}  />
                         <View style={styles.footer}>
                             <Text style={styles.greytext}>Or book a service with BeautyRyder</Text>
                         </View>

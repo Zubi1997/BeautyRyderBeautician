@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@react-native-community/clipboard": "^1.5.1",
+<<<<<<< HEAD
     "@react-navigation/drawer": "^6.5.0",
+=======
+    "@react-navigation/bottom-tabs": "^6.4.0",
+>>>>>>> 536d78c97fce91ce2a1055012e3819fe63b90f18
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.1",
     "@twotalltotems/react-native-otp-input": "^1.3.11",

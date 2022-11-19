@@ -156,7 +156,7 @@ export default function Required_steps({ route,navigation }) {
                     </View>
                 ))}
              
-                {route?.params?.image?
+                {!route?.params?.image?
                 <>
                   <View style={{marginTop:20}}>
                   <Text_heading style={{color:colors.primary}} text="Submitted"/>
