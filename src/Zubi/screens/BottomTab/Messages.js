@@ -52,7 +52,7 @@ const a = [
 const Tab = createMaterialTopTabNavigator();
  
 
-export default function Settings(props) {
+export default function Messages(props) {
 
     const [manual_time, set_manual_time] = useState('');
     const [starCount, setstarCount] = useState(5);
@@ -64,7 +64,10 @@ export default function Settings(props) {
 
   return (
     <>
-        <Header/>      
+        <Header 
+            onpress={()=>props.navigation.openDrawer()}
+            toggle_change={(val)=>console.log(val)}
+        />      
         <ScrollView style={styles.cont} >
             <View style={styles.innerCont} >
                 {a.map((item,index)=>{

@@ -3,7 +3,7 @@
   import OTPInputView from "@twotalltotems/react-native-otp-input";
 
   import React, { useEffect, useState } from "react";
-  import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image } from "react-native";
+  import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image, TouchableOpacity } from "react-native";
   import DropDownPicker from "react-native-dropdown-picker";
   import colors from "../../assets/colors";
   import Divider from "../../Components/Divider";
@@ -13,6 +13,7 @@
   import Text_sub_heading from "../../Components/Text_components/Text_sub_heading";
   import LinearGradient from "react-native-linear-gradient";
   import Social_button from "../../Components/Buttons/Social_button";
+  import Ionicons from 'react-native-vector-icons/Ionicons';
   
   // import AsyncStorage from "@react-native-async-storage/async-storage";
   
@@ -33,6 +34,12 @@
   
     return (
         <SafeAreaView style={styles.container}>
+          <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:20,marginTop:20}}>
+            <Ionicons
+                name="arrow-back"
+                style={{color: '#4C6870', fontSize: 25}}
+              />
+          </TouchableOpacity>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollview}>
             <View style={styles.heading}>
                 <Text_heading text="Enter the 4-digit code sent to you at"/>
@@ -52,9 +59,9 @@
             />
             </View>
             <Text_sub_heading style={{color:colors.purple_text,marginTop:20,fontSize:18}} text="I didn't receive a code (30.00)"/>
-            <Social_button viewStyle={{backgroundColor:'transparent',borderColor:colors.divider,borderWidth:1,width:'90%'}} style={{color:colors.greytxt}} gradient={false} end={false}  onpress={()=>navigation.navigate('Onboarding2')} Title1='Login with password'/>
+            <Social_button viewStyle={{backgroundColor:'transparent',borderColor:colors.divider,borderWidth:1,width:'90%'}} style={{color:colors.greytxt}} gradient={false} end={false}  onpress={()=>navigation.navigate('Password')} Title1='Login with password'/>
 
-            <GradientButton end={false} onpress={()=>navigation.navigate('Password')} Title1='CONTINUE'/>
+            <GradientButton end={false} onpress={()=>navigation.navigate('Category')} Title1='CONTINUE'/>
 
             <View style={styles.social_view}>
 

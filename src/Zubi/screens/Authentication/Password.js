@@ -3,7 +3,7 @@
   import OTPInputView from "@twotalltotems/react-native-otp-input";
 
   import React, { useEffect, useState } from "react";
-  import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image, TextInput } from "react-native";
+  import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image, TextInput,TouchableOpacity } from "react-native";
   import DropDownPicker from "react-native-dropdown-picker";
   import colors from "../../assets/colors";
   import Divider from "../../Components/Divider";
@@ -13,6 +13,7 @@
   import Text_sub_heading from "../../Components/Text_components/Text_sub_heading";
   import LinearGradient from "react-native-linear-gradient";
   import Social_button from "../../Components/Buttons/Social_button";
+  import Ionicons from 'react-native-vector-icons/Ionicons';
   
   // import AsyncStorage from "@react-native-async-storage/async-storage";
   
@@ -33,6 +34,12 @@
   
     return (
         <SafeAreaView style={styles.container}>
+          <TouchableOpacity onPress={()=>navigation.goBack()} style={{marginLeft:20,marginTop:20}}>
+            <Ionicons
+                name="arrow-back"
+                style={{color: '#4C6870', fontSize: 25}}
+              />
+          </TouchableOpacity>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollview}>
             <View style={styles.heading}>
                 <Text_heading text="Welcome back, Mr.John"/>
@@ -54,7 +61,7 @@
             </View>
             <View style={{width:windowWidth-40,marginTop:30}}>
               <Social_button viewStyle={styles.forgot_btn} style={{color:colors.greytxt}} Title1='I forgot my password'/>
-              <Social_button viewStyle={styles.forgot_btn} gradient={false} end={false} style={{color:colors.greytxt,}} onpress={()=>navigation.navigate('Onboarding2')} Title1="Ican't sign in"/>
+              <Social_button viewStyle={styles.forgot_btn} gradient={false} end={false} style={{color:colors.greytxt,}} onpress={()=>navigation.navigate('Onboarding2')} Title1="I can't sign in"/>
             </View>
 
             <GradientButton end={false} onpress={()=>navigation.navigate('Category')} Title1='CONTINUE'/>

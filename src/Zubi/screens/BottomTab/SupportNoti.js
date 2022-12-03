@@ -53,7 +53,7 @@ const Supp = (props) => {
  
                             </View>
                             { a.length - 1 === index && 
-                                <TouchableOpacity  onPress={()=>props.navigation.navigate('Chat')} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
+                                <TouchableOpacity  onPress={()=>{}} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
                                     <Text style={[styles.pra,{fontSize:16,fontWeight:'400',color:'#E33895'}]} >VIEW MORE</Text>
                                 </TouchableOpacity>
                             }
@@ -101,7 +101,7 @@ const Notification = (props) => {
 
                         </View>
                         { a.length - 1 === index && 
-                            <TouchableOpacity  onPress={()=>props.navigation.navigate('Chat')} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
+                            <TouchableOpacity  onPress={()=>{}} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
                                 <Text style={[styles.pra,{fontSize:16,fontWeight:'400',color:'#E33895'}]} >VIEW MORE</Text>
                             </TouchableOpacity>
                         }
@@ -126,7 +126,10 @@ export default function Settings(props) {
 
   return (
     <>
-        <Header/>      
+        <Header 
+            onpress={()=>props.navigation.openDrawer()}
+            toggle_change={(val)=>console.log(val)}
+        />      
             <Tab.Navigator
                 screenOptions={{
                     tabBarActiveTintColor: '#e91e63',

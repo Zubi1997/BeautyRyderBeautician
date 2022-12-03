@@ -50,8 +50,10 @@ export default function Inreview_document({ navigation }) {
                     <Text_sub_heading style={{textAlign:'center'}} text="It usually takes less than a day for us to complete the process."/>
                 </View>
             </View>
-         
-            <GradientButton end={true} onpress={()=>navigation.navigate('Help')} Title1='Next'/>
+            
+            {/* <GradientButton end={true} onpress={()=>navigation.navigate('Help')} Title1='Next'/> */}
+            <GradientButton end={true} onpress={()=>navigation.navigate('Dashboard')} Title1='Next'/>
+
 
            
         </ScrollView>

@@ -23,7 +23,14 @@ import Support from '../Zubi/screens/BottomTab/SupportNoti';
 import Chat from '../Zubi/screens/BottomTab/Messages';
 import Setting from '../Zubi/screens/BottomTab/Settings';
 import DateDistances from '../Zubi/screens/BottomTab/DateDistances';
-
+import Menu, {
+  MenuProvider,
+  MenuTrigger,
+  MenuOptions,
+  MenuOption,
+  renderers,
+} from 'react-native-popup-menu';
+import Pdf_viewer from '../Zubi/screens/Authentication/Pdf_viewer';
 
 
 //zubi end
@@ -34,16 +41,18 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <MenuProvider>
+    
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Review"
+        initialRouteName="Splash"
         screenOptions={{headerShown: false}}>
           {/* asim code */}
-        <Stack.Screen name="Review" component={Review} />
-        <Stack.Screen name="Support" component={Support} />
+        {/* <Stack.Screen name="Review" component={Review} /> */}
+        {/* <Stack.Screen name="Support" component={Support} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Setting" component={Setting} />
-        <Stack.Screen name="DateDistances" component={DateDistances} />
+        <Stack.Screen name="DateDistances" component={DateDistances} /> */}
           {/* zubi start */}
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Onboarding1" component={Onboarding1} />
@@ -58,8 +67,13 @@ export default function App() {
         <Stack.Screen name="CNIC_detailed_image" component={CNIC_detailed_image} />
         <Stack.Screen name="Inreview_document" component={Inreview_document} />
         <Stack.Screen name="Help" component={Help} />
+        {/* dummy */}
+        <Stack.Screen name="Pdf_viewer" component={Pdf_viewer} />
+        {/* dummy */}
+
         <Stack.Screen name="Dashboard" component={Dashboard} />
       </Stack.Navigator>
     </NavigationContainer>
+    </MenuProvider>
   );
 }

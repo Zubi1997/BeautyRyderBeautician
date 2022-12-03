@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image } from "react-native";
+import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image, TouchableOpacity,Linking } from "react-native";
 import colors from "../../assets/colors";
 import { Dark_logo, Light_logo, Onboarding1_image } from "../../assets/Svgs/svg_images";
 import Divider from "../../Components/Divider";
@@ -35,9 +35,9 @@ export default function Onboarding1({ navigation }) {
                 <View style={{flex:1,justifyContent:'flex-end',}}>
                     <View>
                         <Divider height={2} width={windowWidth}  />
-                        <View style={styles.footer}>
+                        <TouchableOpacity onPress={()=>Linking.openURL("market://details?id=googoo.android.btgps")} style={styles.footer}>
                             <Text style={styles.greytext}>Or book a service with BeautyRyder</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

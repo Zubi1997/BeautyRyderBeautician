@@ -24,8 +24,9 @@ export default function Ratings(props) {
   return (
     <View >
         <Header
-            onpress={()=>props.navigation.navigate('Setting')}
-        />   
+            onpress={()=>props.navigation.openDrawer()}
+            toggle_change={(val)=>console.log(val)}
+            />   
         <ScrollView style={styles.cont} >
             <View style={styles.innerCont} >
                 <Text  style={[styles.pra,{fontSize:20,marginTop:5,fontWeight:'600',color:'#E33895',fontFamily:Font_style.Poppins_Bold}]} >Rating and Review</Text>
@@ -65,7 +66,7 @@ export default function Ratings(props) {
                                     page when looking at its layout.</Text>
                             </View>
                             { a.length - 1 === index && 
-                                <TouchableOpacity  onPress={()=>props.navigation.navigate('Support')} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
+                                <TouchableOpacity  onPress={()=>{}} style={{alignSelf:'center' , marginTop: 20 ,marginBottom:100 }} >
                                     <Text style={[styles.pra,{fontSize:16,fontWeight:'400',color:'#E33895'}]} >VIEW MORE</Text>
                                 </TouchableOpacity>
                             }

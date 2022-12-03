@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   submit_txt:{
     color:'white',
     fontWeight:'600',
-    fontSize:20,
+    fontSize:18,
   },
   gradient_view:{
     borderRadius:4,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
 submit_txt_pruple:{
   color:colors.purple_text,
   fontWeight:'600',
-  fontSize:20,
+  fontSize:16,
 }
 
 });

@@ -45,13 +45,14 @@ export const Style_auth = StyleSheet.create({
     button_view:{
       marginTop:windowHeight/15,
       width:windowWidth/2,
-      height:60,
+      height:50,
       alignSelf:'center'
     },
     grey_button_view:{
-      marginTop:windowHeight/30,
+      marginTop:windowHeight/60,
       width:windowWidth/2,
-      height:60,
+      height:50,
+      width:'80%',
       alignSelf:'center',
       backgroundColor:colors.grey_btn,
       borderRadius:4

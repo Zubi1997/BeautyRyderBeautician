@@ -78,7 +78,7 @@ var windowHeight=Dimensions.get('window').height
 
     const CNIC_empty = ()=>{
         const xml = `
-        <svg width="201" height="146" viewBox="0 0 201 146" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg width="100%" height="100%" viewBox="0 0 201 146" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect opacity="0.4" width="201" height="146" fill="url(#pattern0)"/>
         <defs>
         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">

@@ -108,6 +108,15 @@ const Tab = createBottomTabNavigator();
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerContent from '../Drawer/index';
+import Review from '../BottomTab/RatingReview';
+import SupportNoti from '../BottomTab/SupportNoti';
+import Messages from '../BottomTab/Messages';
+import DateDistances from '../BottomTab/DateDistances';
+
+
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 
 function Feed() {
@@ -125,6 +134,26 @@ function Article() {
     </View>
   );
 }
+const SettingStack = () => {
+  return (
+    // <NavigationContainer theme={navTheme}>
+    <Stack.Navigator
+      // initialRouteName="Order"
+      initialRouteName='Settings'
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Review" component={Review} />
+      <Stack.Screen name="SupportNoti" component={SupportNoti} />
+      <Stack.Screen name="Messages" component={Messages} />
+      {/* <Stack.Screen name="Setting" component={Setting} /> */}
+      <Stack.Screen name="DateDistances" component={DateDistances} />
+
+      {/* <Stack.Screen name='RenewOffer' component={RenewOffer}/>
+      <Stack.Screen name='Preview' component={Preview}/> */}
+    </Stack.Navigator>
+    // </NavigationContainer>
+  );
+};
 
 const Drawer = createDrawerNavigator();
 
@@ -145,6 +174,9 @@ function MyDrawer() {
       >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
       <Drawer.Screen name="Article" component={Article} />
+      <Drawer.Screen name="Review" component={Review} />
+      
+
      
     </Drawer.Navigator>
     // <Drawer.Navigator useLegacyImplementation>
@@ -153,6 +185,7 @@ function MyDrawer() {
     // </Drawer.Navigator>
   );
 }
+
 
 
 const HomeStack = ({navigation}) => {
@@ -213,7 +246,7 @@ const HomeStack = ({navigation}) => {
             }
            
            
-            if (route.name === 'Settings') {
+            if (route.name === 'SettingStack') {
               if (focused) {
                 return (
                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
@@ -236,7 +269,7 @@ const HomeStack = ({navigation}) => {
         >
         <Tab.Screen name="Maps" component={Maps} />
         <Tab.Screen name="Graphs" component={Graphs} />
-        <Tab.Screen name="Settings" component={Settings} />
+        <Tab.Screen name="SettingStack" component={SettingStack} />
       </Tab.Navigator>
      
     </>

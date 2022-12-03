@@ -24,7 +24,7 @@ export default function Settings(props) {
     const toggleSwitch = () =>{ 
         set_photo_detail_modal(!photo_detail_modal)
         setIsEnabled(previousState => !previousState)};
-    const [photo_detail_modal, set_photo_detail_modal] = useState(true);
+    const [photo_detail_modal, set_photo_detail_modal] = useState(false);
     const [starCount, setstarCount] = useState(0);
   
 
@@ -50,7 +50,7 @@ export default function Settings(props) {
             </View>
         
               <View style={{marginRight:20}} >
-                <TouchableOpacity onPress={()=>alert('alert')} >
+                <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
                   <Icons name = {'ios-menu-outline'} size={38} color={'#9D9B9B'} />
                 </TouchableOpacity>
               </View>
@@ -109,7 +109,7 @@ export default function Settings(props) {
                     <View style={{
                         flexDirection:'row',height:80,
                         justifyContent:'center'
-                    }} >
+                        }} >
                         <Image
                             source={Dp}
                             style={styles.dp}
@@ -123,34 +123,35 @@ export default function Settings(props) {
                             </TouchableOpacity>
                         </LinearGradient>
                     </View>
-                    <Text style={[styles.title,{alignSelf:'center',fontSize:24,fontWeight:'700'}]} >Keshav Maharaj</Text>
-                    <Text style={[styles.title,{alignSelf:'center',fontSize:24,fontWeight:'500',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#E33895'}]} >Please Rate your Experience</Text>
-                    <Rating
-                        onFinishRating={(r)=>{
-                            setstarCount(r)}}
-                        style={{ paddingVertical: 10 }}
-                    />
-                    <View style={{width:'95%',alignSelf:'center'}} >
-                        <Text style={[styles.title,{fontSize:16,fontWeight:'500',fontFamily:Font_style.Poppins_Regular,marginTop:10}]} >  Additional Comments</Text>
-                        <View style={styles.continput} >
-                            <TextInput
-                                placeholder='Type here...'
-                                multiline
-                                placeholderTextColor={'#9D9B9B'}
-                                style={{color:'#9D9B9B',marginTop:-10}}
-                            />
+                    <ScrollView contentContainerStyle={{paddingBottom:20}}>
+                        <Text style={[styles.title,{alignSelf:'center',fontSize:24,fontWeight:'700'}]} >Keshav Maharaj</Text>
+                        <Text style={[styles.title,{alignSelf:'center',fontSize:24,fontWeight:'500',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#E33895'}]} >Please Rate your Experience</Text>
+                        <Rating
+                            onFinishRating={(r)=>{
+                                setstarCount(r)}}
+                            style={{ paddingVertical: 10 }}
+                        />
+                        <View style={{width:'95%',alignSelf:'center'}} >
+                            <Text style={[styles.title,{fontSize:16,fontWeight:'500',fontFamily:Font_style.Poppins_Regular,marginTop:10}]} >  Additional Comments</Text>
+                            <View style={styles.continput} >
+                                <TextInput
+                                    placeholder='Type here...'
+                                    multiline
+                                    placeholderTextColor={'#9D9B9B'}
+                                    style={{color:'#9D9B9B',marginTop:-10}}
+                                />
+                            </View>
+                            <Text style={[styles.title,{fontSize:8,fontWeight:'400',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#E33895'}]} >*Type 250 to 300 words</Text>
+                            <LinearGradient
+                                colors={  ['#E33895','#79489D']}
+                                style={styles.btn}
+                            >
+                                <TouchableOpacity style={styles.inside} >
+                                    <Text style={[styles.title,{fontSize:20,fontWeight:'500',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#fff'}]} >PUBLISH FEEDBACK</Text>
+                                </TouchableOpacity>
+                            </LinearGradient>
                         </View>
-                        <Text style={[styles.title,{fontSize:8,fontWeight:'400',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#E33895'}]} >*Type 250 to 300 words</Text>
-                        <LinearGradient
-                            colors={  ['#E33895','#79489D']}
-                            style={styles.btn}
-                        >
-                            <TouchableOpacity style={styles.inside} >
-                                <Text style={[styles.title,{fontSize:20,fontWeight:'500',fontFamily:Font_style.Poppins_Medium,marginTop:5,color:'#fff'}]} >PUBLISH FEEDBACK</Text>
-                            </TouchableOpacity>
-                        </LinearGradient>
-                    </View>
-                    
+                    </ScrollView>
                 </View> 
             </View>
         </Modal>
@@ -159,17 +160,17 @@ export default function Settings(props) {
     );
 }
 const styles = StyleSheet.create({
-    btn:{width:'100%',height:60,borderRadius:4,marginTop:10},
-    inside : {width:'100%',height:60,justifyContent:'center',alignItems:'center'},
+    btn:{width:'100%',height:50,borderRadius:4,marginTop:10},
+    inside : {width:'100%',height:50,justifyContent:'center',alignItems:'center'},
     centeredView: {
-        flex: 2,
+        flex: 1,
         backgroundColor:'#000000D9',
         // justifyContent: 'center',
         alignItems: 'center',
     },
     continput:{
         backgroundColor:'#EDEDED',
-        height:172,
+        height:windowHeight/5,
         width:'100%',
         borderWidth:1,
         borderColor:'#D9D9D9',
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     },
     dp:{width:150,height:150,borderRadius:100,borderWidth:5,borderColor:'#fff',alignSelf:'center',top:-45},
     modalView: {
-        height: 523,
+        height: '70%',
         width: '90%',
         position:'absolute',
         bottom: 20,

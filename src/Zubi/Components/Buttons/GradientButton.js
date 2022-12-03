@@ -14,7 +14,9 @@ export default function GradientButton({
     onpress,
     upper_margin,
     end,
-    color}) {
+    color,
+    style
+}) {
 
     const [manual_time, set_manual_time] = useState('');
 
@@ -37,7 +39,7 @@ export default function GradientButton({
     <>
     {end?
         <View style={Style_auth.button_head}>
-            <View style={Style_auth.button_view}>
+            <View style={[Style_auth.button_view,style]}>
                 <LinearGradient
                     colors={[colors.gradient1,colors.gradient2]}
                     style={styles.gradient_view}
@@ -55,7 +57,7 @@ export default function GradientButton({
             </View>
         </View>
         :
-        <View style={Style_auth.button_view}>
+        <View style={[Style_auth.button_view,style]}>
             <LinearGradient
                 colors={[colors.gradient1,colors.gradient2]}
                 style={styles.gradient_view}
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
   submit_txt:{
     color:'white',
     fontWeight:'600',
-    fontSize:20
+    fontSize:18
   },
   gradient_view:{
     borderRadius:4,

@@ -9,7 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
-import Fontisto from 'react-native-vector-icons/Fontisto';Entypo
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { Logout_icon } from '../../assets/Svgs/svg_icons';
 import Divider from '../../Components/Divider';
@@ -25,52 +25,111 @@ const Drawer = props => {
     {
       id: 1,
       imgPath: 'Home',
-      text: 'Membership',
-      onPress: () => console.log('Membership'),
+      text: 'Home',
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'Review',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 2,
       imgPath: 'Profile',
-      text: 'Claim Daily Reward',
-      onPress: () => props.navigation.navigate('FreeCrypto'),
+      text: 'Profile',
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'Review',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 3,
       imgPath: 'Wallet',
-      text: 'Referal',
-      onPress: () => console.log('Membership'),
+      text: 'My Wallet',
+      onPress:()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'Review',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 4,
       imgPath: 'Rating',
-      text: 'Gift Cards',
+      text: 'Rating and Testimonials',
       color: colors.gray,
       imgColor: colors.gray,
-      onPress: () => console.log('Gift Cards'),
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'Review',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 5,
       imgPath: 'Notifications',
-      text: 'Live chat',
-      onPress: () => console.log('Live chat'),
+      text: 'Notifications',
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'SupportNoti',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 6,
       imgPath: 'Registration',
-      text: 'Settings',
-      onPress: () => navigation.navigate('Settings'),
+      text: 'Registration',
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'Messages',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
       id: 7,
       imgPath: 'Support',
-      text: 'Logout',
-      onPress: () => console.log('Logout'),
+      text: 'Online Support',
+      onPress: ()=>props.navigation.navigate('HomeStack', {
+        screen: 'SettingStack',
+        params: {
+          screen: 'DateDistances',
+        //   params: {
+        //     screen: 'Media',
+        //   },
+        },
+      }),
     },
     {
         id: 8,
         imgPath: 'logout',
         text: 'Logout',
-        onPress: () => console.log('Logout'),
+        onPress: () => props.navigation.reset({
+            index: 0,
+            routes: [{ name: "Onboarding1" }],
+          }),
       },
 
   ];
@@ -81,7 +140,9 @@ const Drawer = props => {
         
     if(Title2=='Home'){
         return(
+        <View style={{marginRight:20}}>
             <MaterialIcons name='home' size={15} color={colors.white} />
+        </View>
         )
     }
     else  if(Title2=='Profile'){
@@ -161,7 +222,7 @@ const Drawer = props => {
         <View style={{marginLeft:10,marginTop:20,paddingBottom:20}}>
           {dataArray.map((item, index) => {
             return (
-                <>
+                <TouchableOpacity onPress={item.onPress}>
                 <View key={index.toString()} style={styles.drawer_item}>
                     {check_icon(item.imgPath)}
                     <Text_sub_heading style={{color:colors.white,fontSize:16}} text={item.text}/>
@@ -169,7 +230,7 @@ const Drawer = props => {
                 <View style={{paddingLeft:15}}>
                     <Divider   height={1} width='100%'/>
                 </View>
-                </>
+                </TouchableOpacity>
             );
           })}
         </View>

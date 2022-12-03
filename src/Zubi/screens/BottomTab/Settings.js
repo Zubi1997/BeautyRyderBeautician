@@ -11,8 +11,8 @@ var windowWidth = Dimensions.get('window').width
 var windowHeight=Dimensions.get('window').height
 
 
-const OptButton = ({ label , sublabel , onPress }) => (
-  <View style={{backgroundColor:'#fff',flex:1}} >
+const OptButton = ({ label , sublabel , onpress }) => (
+  <TouchableOpacity onPress={onpress} style={{backgroundColor:'#fff',flex:1}} >
     <View style={[styles.card,{justifyContent:'space-between'}]} >
         <View style={{marginLeft:20}} >
             <Text style={
@@ -27,12 +27,12 @@ const OptButton = ({ label , sublabel , onPress }) => (
             }
         </View>
         <View style={{marginRight:25}} >
-          <TouchableOpacity onPress={onPress} >
+          <TouchableOpacity onPress={onpress} >
             <Entypo name={'chevron-thin-right'} size={22} color = {'#9D9B9B'} />
           </TouchableOpacity>
         </View>
     </View>
-  </View>
+  </TouchableOpacity>
 )
 
 export default function Settings(props) {
@@ -47,7 +47,7 @@ export default function Settings(props) {
       {
         label : 'Phone Number',
         sublabel : '+92 300 8725885',
-        click : ()=>alert('sdlfldn')
+        click : ()=>props.navigation.navigate('Review')
       },
       {
         label : 'Do not lock the screen',
@@ -106,7 +106,7 @@ export default function Settings(props) {
               <OptButton
                   label={item.label}
                   sublabel = {item.sublabel ? item.sublabel : '' }
-                  onPress = {item.click}
+                  onpress = {item.click}
               />
             )
           }) }
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderBottomColor:'#DCDCDC'
   },
   title:{
-    fontSize:20,fontWeight:'600',fontFamily:Font_style.Poppins_Bold,color:'#79489D'
+    fontSize:16,fontWeight:'600',fontFamily:Font_style.Poppins_Bold,color:'#79489D'
   },
   num:{color:'#E33895',marginTop:-5,fontSize:14,fontFamily:Font_style.Poppins_Medium,fontWeight:'400'}
 

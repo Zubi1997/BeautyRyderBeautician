@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image } from "react-native";
+import { View, Text,StyleSheet, SafeAreaView, ScrollView,Dimensions, Image, TouchableOpacity } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import colors from "../../assets/colors";
 import Divider from "../../Components/Divider";
@@ -34,10 +34,11 @@ export default function Phone_Auth({ navigation }) {
     <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollview}>
             <View style={styles.heading}>
-                <Text_heading text="What's your phone number or email?"/>
+                <Text_heading 
+                style={{fontSize:22}}
+                text="What's your phone number or email?"/>
             </View>
             <View style={styles.dropdown_view}>
-                <View style={styles.picker_view}>
                 <PhoneInput
                     placeholder={'3008725885'}
                     
@@ -56,24 +57,25 @@ export default function Phone_Auth({ navigation }) {
                     value={phone}
                 />
                  
-                </View>
             </View>
 
-            <GradientButton end={false} onpress={()=>navigation.navigate('ChooseAccount')} Title1='CONTINUE'/>
-            <Text_sub_heading style={{color:colors.purple_text,marginTop:20}} text='I forgot my account info'/>
+            <GradientButton  end={false} onpress={()=>navigation.navigate('Phone_otp')} Title1='CONTINUE'/>
+            <TouchableOpacity onPress={()=>navigation.navigate('ChooseAccount')}>
+              <Text_sub_heading style={{color:colors.purple_text,marginTop:18,fontSize:14}} text='I forgot my account info'/>
+            </TouchableOpacity>
 
             <View style={styles.social_view}>
               <LinearGradient
                   colors={[colors.gradient1,colors.gradient2]}
                   style={{flex:1,padding:5}}
               >
-              <Text_sub_heading style={{color:colors.white,marginTop:20,fontSize:20,alignSelf:'center'}} text='Log in with another way'/>
-              <Social_button  gradient={false} end={false} Title2='google' onpress={()=>navigation.navigate('Onboarding2')} Title1='CONTINUE'/>
-              <Social_button  gradient={false} end={false} Title2='facebook' onpress={()=>navigation.navigate('Onboarding2')} Title1='CONTINUE'/>
-              <Social_button  gradient={false} end={false} Title2='apple' onpress={()=>navigation.navigate('Onboarding2')} Title1='CONTINUE'/>
+              <Text_sub_heading style={{color:colors.white,marginTop:20,fontSize:18,alignSelf:'center'}} text='Log in with another way'/>
+              <Social_button  gradient={false} end={false} Title2='google' onpress={()=>navigation.navigate('Onboarding2')} Title1='Continue With Google'/>
+              <Social_button  gradient={false} end={false} Title2='facebook' onpress={()=>navigation.navigate('Onboarding2')} Title1='Continue With Faceebook'/>
+              <Social_button  gradient={false} end={false} Title2='apple' onpress={()=>navigation.navigate('Onboarding2')} Title1='Continue With Apple'/>
               
               <View style={styles.footer}>
-                  <Text_sub_heading style={{color:colors.white,fontSize:15,marginTop:10}} text='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumstandard dummy text ever.'/>
+                  <Text_sub_heading style={{color:colors.white,fontSize:13,marginTop:10}} text='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsumstandard dummy text ever.'/>
               </View>
 
               </LinearGradient>
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop:10
   },
   dropdown_view:{
-    marginTop:windowHeight/20
+    marginTop:windowHeight/40
   },
   picker_view:{
     marginTop:10
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
   social_view:{
     flex:1,
     width:windowWidth,
-    marginTop:50,
+    marginTop:20,
   },
   footer:{
     alignItems:'center',

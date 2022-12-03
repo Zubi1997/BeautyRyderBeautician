@@ -11,6 +11,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Text_sub_heading from "../../Components/Text_components/Text_sub_heading";
 import Font_style from "../../assets/Font_style";
 import ImagePicker from 'react-native-image-crop-picker';
+import DocumentPicker, { types } from 'react-native-document-picker';
+
 import Entypo from 'react-native-vector-icons/Entypo';
 
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,6 +25,8 @@ export default function CNIC_front({ navigation }) {
     const [photo_detail_modal, set_photo_detail_modal] = useState(false);
 
     const [image, setImage] = useState(null);
+    const [next_button, set_next_button] = useState(false);
+
 
   useEffect(() => {
       const constructor = async () => {
@@ -41,6 +45,7 @@ export default function CNIC_front({ navigation }) {
           // onClose()
           console.log(image.path);
           set_modalVisible_camera(false)
+          set_next_button(true)
           setImage(image.path);
         })
         .catch(err => {
@@ -48,6 +53,16 @@ export default function CNIC_front({ navigation }) {
           console.log('openCamera catch' + err.toString());
         });
     };
+    const file_picker=async()=>{
+      const response = await DocumentPicker.pick({
+        presentationStyle: 'fullScreen',
+        type: [types.pdf],
+        allowMultiSelection: true,
+      });
+      console.log(response);
+      navigation.navigate('Pdf_viewer')
+      //content://com.android.providers.media.documents/document/document%3A1000017501
+    }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,42 +72,47 @@ export default function CNIC_front({ navigation }) {
                     <Text_heading text="Take a photo of your CNIC Front Side"/>
                 </View>
                 <View style={styles.description}>
-                    <Text_sub_heading style={{textAlign:'center'}} text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley  of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "/>
+                    <Text_sub_heading style={{textAlign:'center',fontSize:14}} text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley  of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "/>
                 </View>
                 <View style={styles.image_view}>
-                  {image?
-                  // <Text>jdnvsjk</Text>
-                  <TouchableOpacity 
-                  
-                  onPress={()=>set_photo_detail_modal(true)} 
-                  // onPress={()=>navigation.navigate('CNIC_detailed_image')} 
-                  style={{width:windowWidth/2,height:windowWidth/2}}>
-                    <Image
-                      style={{height:'100%',width:'100%'}}
-                      source={{uri:image}}
-                    />
-                  </TouchableOpacity>
-                  :
-                  <View style={{width:windowWidth/2,height:windowWidth/2}}>
-                    <CNIC_empty />
-                  </View>
-                  }
+                    {image?
+                    // <Text>jdnvsjk</Text>
+                    <TouchableOpacity 
+                    
+                    onPress={()=>set_photo_detail_modal(true)} 
+                    // onPress={()=>navigation.navigate('CNIC_detailed_image')} 
+                    style={{width:windowWidth/1.5,height:windowWidth/2.5,alignItems:'center'}}>
+                      <TouchableOpacity onPress={()=>{setImage(''),set_next_button(false)}} style={{alignSelf:'flex-end',marginVertical:10,marginRight:10}}>
+                        <Entypo
+                            name="circle-with-cross"
+                            style={{color:colors.primary, fontSize: 25}}
+                          />
+                      </TouchableOpacity>
+                      <Image
+                        style={{height:windowWidth/4,width:windowWidth/2.5,marginHorizontal:50,marginTop:-10}}
+                        source={{uri:image}}
+                      />
+                    </TouchableOpacity>
+                    :
+                    <View style={{width:windowWidth/1.5,height:windowWidth/2.5,padding:30}}>
+                      <CNIC_empty />
+                    </View>
+                    }
                 </View>
             </View>
-            {/* <View style={styles.dropdown_view}> */}
-           
-            {/* </View> */}
-            <View style={styles.zoom_view}>
+            {/* <View style={styles.zoom_view}>
                 <View style={{marginLeft:10}}>
                     <Plus_box />
                 </View>
                 <View style={{marginLeft:10}}>
                     <Minus_box />
                 </View>
-            </View>
-
-            <GradientButton end={true} onpress={()=>set_modalVisible_camera(true)} Title1='TAKE PHOTO'/>
-
+            </View> */}
+            {next_button?
+            <GradientButton onpress={()=>navigation.navigate('Required_steps',{image:true})} Title1='Next'/>
+            :
+            <GradientButton onpress={()=>set_modalVisible_camera(true)} Title1='TAKE PHOTO'/>
+            }
             <Modal
               animationType="slide"
               transparent={true}
@@ -113,10 +133,10 @@ export default function CNIC_front({ navigation }) {
 
                         <View style={{width:1,height:'100%',backgroundColor:colors.divider}}></View>
                         
-                        <View style={styles.camera_logo}>
+                        <TouchableOpacity onPress={()=>file_picker()} style={styles.camera_logo}>
                           <File_logo />
                           <Text style={styles.cancel_txt}>Files</Text>
-                        </View>  
+                        </TouchableOpacity>  
 
                     </View>
                     <TouchableOpacity onPress={()=>set_modalVisible_camera(false)} style={{padding:20,alignItems:'center',justifyContent:'center'}}>
@@ -154,17 +174,14 @@ export default function CNIC_front({ navigation }) {
                         }
                       </View>
                   </View>
-                  {/* <View style={styles.dropdown_view}> */}
-                
-                  {/* </View> */}
-                  <View style={styles.zoom_view}>
+                  {/* <View style={styles.zoom_view}>
                       <View style={{marginLeft:10}}>
                           <Plus_box />
                       </View>
                       <View style={{marginLeft:10}}>
                           <Minus_box />
                       </View>
-                  </View>
+                  </View> */}
 
                   <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
                       <View style={{width:(windowWidth/2)-30,height:2,backgroundColor:colors.divider}}></View>
@@ -228,10 +245,9 @@ const styles = StyleSheet.create({
     borderRadius:4,
     borderColor:colors.divider,
     borderWidth:2,
-    paddingHorizontal:50,
-    padding:30,
-    alignItems:'center',
-    marginTop:50
+    // paddingHorizontal:50,
+    // alignItems:'center',
+    marginTop:30,
   },
   cat_txt_view:{
     flex:1,

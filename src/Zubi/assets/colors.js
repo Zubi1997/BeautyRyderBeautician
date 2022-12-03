@@ -8,6 +8,7 @@ const colors = {
   black: "#000000",
   lightgrey1: "#EDEDED",
   lightgrey2: "#DFDFDF",
+  lightgrey3: "#B6B6B6",
   background_grey: "#F6F5F5",
   purple_text: "#79489D",
   white: "#FFFFFF",

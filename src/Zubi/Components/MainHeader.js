@@ -1,5 +1,5 @@
 //import libraries
-import React, {Component , useState} from 'react';
+import React, {Component , useEffect, useState} from 'react';
 import {View, Text , Image, StyleSheet,TouchableOpacity, SafeAreaView} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icons from 'react-native-vector-icons/Ionicons';
@@ -7,11 +7,15 @@ import ToggleSwitch from 'toggle-switch-react-native'
 import Dp from '../assets/pngImages/Onboarding1.png'
 // create a component
 import Font_style from '../assets/Font_style';
-const HeaderWithLogo = ({onpress}) => {
+const HeaderWithLogo = ({onpress,toggle_change}) => {
   // const {label, onPress} = props;
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  useEffect(()=>{
+    console.log(isEnabled);
+    toggle_change(isEnabled)
+  },[isEnabled])
   return (
     <SafeAreaView>
       <View style={styles.container}>

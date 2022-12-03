@@ -7,8 +7,16 @@ import { Dark_logo, Light_logo, Onboarding1_image } from "../../assets/Svgs/svg_
 import Divider from "../../Components/Divider";
 import GradientButton from "../../Components/Buttons/GradientButton";
 import Text_heading from "../../Components/Text_components/Text_heading";
-import LinearGradient from 'react-native-linear-gradient';
+import Entypo from 'react-native-vector-icons/Entypo';
 
+import LinearGradient from 'react-native-linear-gradient';
+import Menu, {
+  MenuProvider,
+  MenuTrigger,
+  MenuOptions,
+  MenuOption,
+  renderers,
+} from 'react-native-popup-menu';
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var windowWidth = Dimensions.get('window').width
@@ -22,41 +30,32 @@ export default function Category({ navigation }) {
       {label: 'Help', value: 'Help'}
     ]);
     
-
-  const Categories = [
+    const [Categories, setCategories] = useState([
     {
       id: '1',
       Title: 'Eyelashes extensions',
       sub_title:'Lorem Ipsum is simply dummy text of the printing',
-      width: '24',
-      height:' 5',
-      depth: '16.5',
+      checked:false
     },
     {
       id: '2',
       Title: 'Nail treatments',
       sub_title:'Lorem Ipsum is simply dummy text of the printing',
-      width: '35',
-      height: '12',
-      depth: '25',
+      checked:false
     },
     {
       id: '3',
       Title: 'Hair-cutting',
       sub_title:'Lorem Ipsum is simply dummy text of the printing',
-      width: '45',
-      height: '16',
-      depth: '35',
+      checked:false
     },
     {
       id: '4',
       Title: 'Facials and skin care treatments.',
       sub_title:'Lorem Ipsum is simply dummy text of the printing',
-      width: '45',
-      height: '45',
-      depth: '45',
+      checked:false
     },
-  ];
+  ]);
 
   useEffect(() => {
       const constructor = async () => {
@@ -66,11 +65,17 @@ export default function Category({ navigation }) {
       };
       constructor();
     }, [])
+    const select_category=(item,index)=>{
+      const temp = [...Categories]
+      // Categories.filter((item,index)=>item.checked=true)
+      temp[index].checked=!temp[index].checked
+      setCategories(temp)
+    }
 
   return (
     <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollview}>
-            <View style={styles.picker_view}>
+            {/* <View style={styles.picker_view}>
                 <DropDownPicker
                     open={open}
                     value={value}
@@ -86,12 +91,30 @@ export default function Category({ navigation }) {
                     color:colors.greytxt
                     }}
                 />
+            </View> */}
+            <View style={{alignItems:'flex-end'}}>
+              <Menu>
+                <MenuTrigger onPress={() => {}} style={styles.trigger}>
+                  <View style={{height: 40,width: 40,alignItems: 'center',justifyContent: 'center',}}>
+                    <Entypo name="dots-three-vertical" style={{color: '#4C6870', fontSize: 20}} />
+                  </View>
+                </MenuTrigger>
+                <MenuOptions customStyles={{optionText: {padding: 5}}}>
+                  <MenuOption value="Normal" text="Get help in person" />
+                  <MenuOption value="Normal" text="How to start with BeautyRyder" />
+                  <MenuOption value="Normal" text="Get help in person" />
+                  <MenuOption value="Normal" text="Get help with your account" />
+                  <MenuOption value="Normal" text="How to start with BeautyRyder" />
+                  <MenuOption onSelect={() => console.log('call')} value="Normal" text="Get help with your account" />
+                </MenuOptions>
+              </Menu>
             </View>
             <View style={styles.header}>
                 <View style={styles.heading}>
                     <Text_heading text="Choose how you'd like to earn with BeautyRyder"/>
                 </View>
             </View>
+           
             {/* <View style={styles.dropdown_view}> */}
            
             {/* </View> */}
@@ -99,8 +122,8 @@ export default function Category({ navigation }) {
           
                     {Categories?.map(( item, index ) =>(
                     <View key={index} style={{width:'100%'}}>
-                    {selected_index.id==item.id?
-                  
+                    {item.checked==true?
+                        <TouchableOpacity onPress={()=>select_category(item,index)}>
                         <LinearGradient
                             colors={[colors.gradient1,colors.gradient2]}
                             style={styles.single_cat}
@@ -112,8 +135,9 @@ export default function Category({ navigation }) {
                                 <Text style={[styles.cat_txt2,{color:colors.white}]} >{item.sub_title}</Text>
                             </View>
                         </LinearGradient>
+                        </TouchableOpacity>
                         :
-                        <TouchableOpacity onPress={()=>set_selected_index(item)}  style={styles.single_cat}>
+                        <TouchableOpacity onPress={()=>select_category(item,index)}  style={styles.single_cat}>
                             <View style={styles.img}>
                             </View>
                             <View style={styles.cat_txt_view}>
@@ -150,7 +174,7 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
   heading:{
-    marginTop:40
+    marginTop:20
   },
 
   picker_view:{
