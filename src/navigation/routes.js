@@ -17,7 +17,6 @@ import Inreview_document from '../Zubi/screens/Authentication/Inreview_document'
 import Help from '../Zubi/screens/Authentication/Help';
 import Dashboard from '../Zubi/screens/BottomTab/Dashboard';
 
-//Asim Screens
 import Review from '../Zubi/screens/BottomTab/RatingReview';
 import Support from '../Zubi/screens/BottomTab/SupportNoti';
 import Chat from '../Zubi/screens/BottomTab/Messages';
@@ -45,9 +44,8 @@ export default function App() {
     
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="Dashboard"
         screenOptions={{headerShown: false}}>
-          {/* asim code */}
         {/* <Stack.Screen name="Review" component={Review} /> */}
         {/* <Stack.Screen name="Support" component={Support} />
         <Stack.Screen name="Chat" component={Chat} />

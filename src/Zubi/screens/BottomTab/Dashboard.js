@@ -7,103 +7,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Graphs from './Graphs';
 import Maps from './Maps';
 import Settings from './Settings';
-import colors from "../../assets/colors";
 
 var windowWidth = Dimensions.get('window').width
 var windowHeight=Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
-
-// function Dashboard() {
-//   return (
-//     // <Tab.Navigator 
-//     // screenOptions={{headerShown: false}}
-//     // >
-//     //   <Tab.Screen name="Maps" component={Maps} />
-//     //   <Tab.Screen name="Graphs" component={Graphs} />
-//     //   <Tab.Screen name="Settings" component={Settings} />
-
-//     // </Tab.Navigator>
-//     <Tab.Navigator
-//         screenOptions={({route}) => ({
-//           headerShown: false,
-//           tabBarShowLabel: false,
-//           tabBarHideOnKeyboard: true,
-//           tabBarStyle: {
-//             height:windowHeight/10,
-//             // backgroundColor: 'black',
-//             // borderTopWidth: 1,
-//             // borderTopColor: 'black',
-//             paddingTop: 15,
-//             paddingBottom: 15,
-//           },
-
-//           tabBarIcon: ({focused}) => {
-//             console.log('/////////',route.name,focused);
-//             if (route.name === 'Maps') {
-//               if (focused) {
-//                 return (
-//                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
-//                       <Map_tab_icon/>
-//                   </View>
-//                 );
-//               } else {
-//                 return (
-//                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
-//                       <Map_tab_grey_icon />
-//                   </View>
-//                 );
-//               }
-//             }
-//             if (route.name === 'Graphs') {
-//               if (focused) {
-//                 return (
-//                   <View style={{width:'100%',height:'100%',alignItems:'center',alignItems:'center',justifyContent:'center'}}>
-//                       <Graph_tab_icon />
-//                       {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
-//                   </View>
-//                 );
-//               } else {
-//                 return (
-//                   <View style={{width:'100%',alignItems:'center',alignItems:'center',justifyContent:'center'}}>
-//                       <Graph_tab_grey_icon />
-//                       {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
-//                   </View>
-//                 );
-//               }
-//             }
-           
-           
-//             if (route.name === 'Settings') {
-//               if (focused) {
-//                 return (
-//                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
-//                       <Setting_tab_icon />
-
-//                       {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
-//                   </View>
-//                 );
-//               } else {
-//                 return (
-//                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
-//                       <Setting_tab_grey_icon />
-//                       {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
-//                   </View>
-//                 );
-//               }
-//             }
-//           },
-//         })}
-//         >
-//         <Tab.Screen name="Maps" component={Maps} />
-//         <Tab.Screen name="Graphs" component={Graphs} />
-//         <Tab.Screen name="Settings" component={Settings} />
-//       </Tab.Navigator>
-//   );
-// }
-
-// export default Dashboard
-
-
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -115,6 +22,8 @@ import DateDistances from '../BottomTab/DateDistances';
 
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Notifications from "./Notifications/Notifications";
+import colors from "../../assets/colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -154,7 +63,32 @@ const SettingStack = () => {
     // </NavigationContainer>
   );
 };
-
+const MapStack = () => {
+  return (
+    // <NavigationContainer theme={navTheme}>
+    <Stack.Navigator
+      // initialRouteName="Order"
+      initialRouteName='Maps'
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Maps" component={Maps} />
+      <Stack.Screen name="Messages" component={Messages} />
+    </Stack.Navigator>
+    // </NavigationContainer>
+  );
+};
+const NotificationStack = () => {
+  return (
+    // <NavigationContainer theme={navTheme}>
+    <Stack.Navigator
+      // initialRouteName="Order"
+      initialRouteName='Notifications'
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Notifications" component={Notifications} />
+      {/* <Stack.Screen name="Messages" component={Messages} /> */}
+    </Stack.Navigator>
+    // </NavigationContainer>
+  );
+};
 const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
@@ -212,7 +146,7 @@ const HomeStack = ({navigation}) => {
 
           tabBarIcon: ({focused}) => {
             console.log('/////////',route.name,focused);
-            if (route.name === 'Maps') {
+            if (route.name === 'MapStack') {
               if (focused) {
                 return (
                   <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
@@ -264,12 +198,31 @@ const HomeStack = ({navigation}) => {
                 );
               }
             }
+            if (route.name === 'NotificationStack') {
+              if (focused) {
+                return (
+                  <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
+                      <Ionicons name="md-notifications-circle-outline" style={{color: colors.primary, fontSize: 40}} />
+                      {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
+                  </View>
+                );
+              } else {
+                return (
+                  <View style={{width:'100%',alignItems:'center',justifyContent:'center'}}>
+                      <Ionicons name="md-notifications-circle-outline" style={{color: colors.grey_btn, fontSize: 40}} />
+                      {/* <CustomText label="Home" textStyle={styles.activeLabel} /> */}
+                  </View>
+                );
+              }
+            }
           },
         })}
         >
-        <Tab.Screen name="Maps" component={Maps} />
+        <Tab.Screen name="MapStack" component={MapStack} />
         <Tab.Screen name="Graphs" component={Graphs} />
         <Tab.Screen name="SettingStack" component={SettingStack} />
+        <Tab.Screen name="NotificationStack" component={NotificationStack} />
+
       </Tab.Navigator>
      
     </>

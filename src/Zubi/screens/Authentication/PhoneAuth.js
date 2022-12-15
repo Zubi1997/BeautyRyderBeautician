@@ -37,6 +37,8 @@ export default function Phone_Auth({ navigation }) {
                 <Text_heading 
                 style={{fontSize:22}}
                 text="What's your phone number or email?"/>
+                {/* text="bsckjsabdcjkdbcjkdsbcvkdjsb?"/> */}
+
             </View>
             <View style={styles.dropdown_view}>
                 <PhoneInput
@@ -99,7 +101,8 @@ const styles = StyleSheet.create({
   },
   heading:{
     marginTop:40,
-    alignItems:'center'
+    alignItems:'center',
+    paddingHorizontal:20
   },
   subheading:{
     marginTop:10

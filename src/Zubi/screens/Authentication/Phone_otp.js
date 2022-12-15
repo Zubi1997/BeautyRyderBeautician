@@ -58,7 +58,9 @@
               onCodeChanged={(value) => setCode(value)}
             />
             </View>
-            <Text_sub_heading style={{color:colors.purple_text,marginTop:20,fontSize:18}} text="I didn't receive a code (30.00)"/>
+            <TouchableOpacity>
+              <Text_sub_heading style={{color:colors.purple_text,marginTop:20,fontSize:18}} text="I didn't receive a code (30.00)"/>
+            </TouchableOpacity>
             <Social_button viewStyle={{backgroundColor:'transparent',borderColor:colors.divider,borderWidth:1,width:'90%'}} style={{color:colors.greytxt}} gradient={false} end={false}  onpress={()=>navigation.navigate('Password')} Title1='Login with password'/>
 
             <GradientButton end={false} onpress={()=>navigation.navigate('Category')} Title1='CONTINUE'/>

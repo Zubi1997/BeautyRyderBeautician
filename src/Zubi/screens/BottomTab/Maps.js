@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { StyleSheet, Text, View,Dimensions, TextInput, ScrollView } from "react-native";
+import { StyleSheet, Text, View,Dimensions, Modal, ScrollView, TouchableOpacity,Image } from "react-native";
 import MapView from "react-native-maps";
 import colors from "../../assets/colors";
 import GradientButton from "../../Components/Buttons/GradientButton";
@@ -14,6 +14,7 @@ import Font_style from "../../assets/Font_style";
 import Divider from "../../Components/Divider";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Review_modal from "../../Components/Review_modal";
 
 
 var windowWidth = Dimensions.get('window').width
@@ -23,6 +24,7 @@ export default function Maps({navigation}) {
   const [modal_state, set_modal_state] = useState(0);
   const [starting_location, set_starting_location] = useState('');
   const [destination_location, set_destination_location] = useState('');
+  const [photo_detail_modal, set_photo_detail_modal] = useState(false);
 
 
   const check_modal_state=()=>{
@@ -129,7 +131,7 @@ export default function Maps({navigation}) {
 
               {/* <Text_sub_heading text='Service Detail' style={{color:colors.primary}}/> */}
               {modal_state==6?
-              <GradientButton style={{width:'100%',marginTop:20}} end={false} onpress={()=>set_modal_state(0)}  Title1='Complete Job'/>
+              <GradientButton style={{width:'100%',marginTop:20}} end={false} onpress={()=>set_photo_detail_modal(true)}  Title1='Complete Job'/>
               :
               <>
                 <GradientButton style={{width:'100%',marginTop:20}} end={false} onpress={()=>set_modal_state(3)}  Title1='ACCEPT JOB'/>
@@ -165,9 +167,9 @@ export default function Maps({navigation}) {
             <View style={{flex:1}}>
               <GradientButton style={{width:'100%',marginTop:0}} end={false} onpress={()=>set_modal_state(5)}  Title1='ARRIVED'/>
             </View>
-            <View style={{height:60,width:50,borderWidth:2,borderColor:colors.primary,borderRadius:4,alignItems:'center',justifyContent:'center',marginLeft:10}}>
+            <TouchableOpacity onPress={()=>navigation.navigate('Messages')} style={{height:60,width:50,borderWidth:2,borderColor:colors.primary,borderRadius:4,alignItems:'center',justifyContent:'center',marginLeft:10}}>
               <MaterialCommunityIcons name = {'message-text-outline'} size={40} color={colors.primary} />
-            </View>
+            </TouchableOpacity>
             <View style={{height:60,width:50,borderWidth:2,borderColor:colors.primary,borderRadius:4,alignItems:'center',justifyContent:'center',marginLeft:10,}}>
               <Ionicons name = {'call-outline'} size={40} color={'#9D9B9B'} />
             </View>
@@ -197,6 +199,20 @@ export default function Maps({navigation}) {
           toggle_change={(val)=>val?set_modal_state(1):set_modal_state(0)}
       />
       {check_modal_state()}
+      <Modal
+            animationType="slide"
+            transparent={true}
+            visible={photo_detail_modal}
+            onRequestClose={() => {
+            set_photo_detail_modal(!photo_detail_modal);
+            }}
+        >
+          <Review_modal 
+            modal={photo_detail_modal} 
+            set_modal={set_photo_detail_modal}
+            btn_click={()=>{set_photo_detail_modal(false),set_modal_state(0)}}
+          />
+      </Modal>
 
     </View>
   );

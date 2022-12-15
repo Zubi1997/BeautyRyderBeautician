@@ -94,7 +94,7 @@ export default function Settings(props) {
                 marginLeft:20
               }} >Settings</Text>
               <View style={{marginRight:20}} >
-                <TouchableOpacity onPress={()=>alert('smfsdkf')} >
+                <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
                   <Icons name = {'ios-menu-outline'} size={38} color={'#9D9B9B'} />
                 </TouchableOpacity>
               </View>

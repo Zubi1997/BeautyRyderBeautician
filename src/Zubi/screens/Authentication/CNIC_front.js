@@ -55,12 +55,17 @@ export default function CNIC_front({ navigation }) {
     };
     const file_picker=async()=>{
       const response = await DocumentPicker.pick({
+        // presentationStyle: 'fullScreen',
+        // type: [types.pdf],
+        // allowMultiSelection: true,
         presentationStyle: 'fullScreen',
         type: [types.pdf],
-        allowMultiSelection: true,
       });
       console.log(response);
-      navigation.navigate('Pdf_viewer')
+      set_modalVisible_camera(false)
+      set_next_button(true)
+
+      // navigation.navigate('Pdf_viewer')
       //content://com.android.providers.media.documents/document/document%3A1000017501
     }
 
